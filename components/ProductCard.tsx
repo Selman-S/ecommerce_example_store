@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import HeartFavorite from "./HeartFavorite";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
  const { user} = useUser()
@@ -83,9 +84,7 @@ const handleLike = async (e: React.MouseEvent<HTMLButtonElement,MouseEvent>) => 
       </div>
       <div className="flex justify-between items-center">
         <p className="text-body-bold">${product.price}</p>
-        <button onClick={handleLike}>
-          <Heart fill={`${isLiked?"red":"white"}`}/>
-        </button>
+        <HeartFavorite product={product} />
       </div>
     </Link>
   );
