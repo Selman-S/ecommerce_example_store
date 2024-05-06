@@ -1,7 +1,8 @@
 "use client"
 import useCart from "@/lib/hooks/useCart";
-
 import { useUser } from "@clerk/nextjs";
+
+
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,7 @@ const Cart = () => {
     email: user?.emailAddresses[0].emailAddress,
     name: user?.fullName,
   };
+console.log(user);
 
   const handleCheckout = async () => {
     try {
@@ -33,8 +35,8 @@ const Cart = () => {
           body: JSON.stringify({ cartItems: cart.cartItems, customer }),
         });
         const data = await res.json();
-        window.location.href = data.url;
-        console.log(data);
+         window.location.href = data.url;
+        console.log(JSON.stringify(data));
       }
     } catch (err) {
       console.log("[checkout_POST]", err);
