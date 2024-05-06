@@ -4,11 +4,14 @@ import { Heart, MinusCircle, PlusCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import HeartFavorite from "./HeartFavorite";
+import useCart from "@/lib/hooks/useCart";
+
 
 const ProductInfo = ({ productDetail }: { productDetail: ProductType }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
     productDetail.colors[0]
   );
+  const cart = useCart()
   const [selectedSize, setSelectedSize] = useState<string>(
     productDetail.sizes[0]
   );
@@ -81,7 +84,9 @@ const [quantity, setQuantity] = useState<number>(1);
 
        </div>
       </div>
-      <button className="outline text-base-bold  py-3 rounded-lg hover:bg-black hover:text-white">
+      <button className="outline text-base-bold  py-3 rounded-lg hover:bg-black hover:text-white"
+      onClick={() => cart.addItem({item: productDetail, color: selectedColor, size: selectedSize, quantity})}
+      >
         Add to cart
       </button>
     </div>

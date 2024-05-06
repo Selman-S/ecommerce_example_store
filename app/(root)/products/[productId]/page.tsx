@@ -1,6 +1,6 @@
 import Gallery from "@/components/Gallery";
 import ProductInfo from "@/components/ProductInfo";
-import { getProductDetail } from "@/lib/actions";
+import { getProductDetail } from "@/lib/actions/actions";
 
 const ProductDetail = async ({params}:{params:{productId:string}}) => {
  const productDetail = await getProductDetail(params.productId);
