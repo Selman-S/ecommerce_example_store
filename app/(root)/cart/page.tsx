@@ -23,9 +23,25 @@ const Cart = () => {
     email: user?.emailAddresses[0].emailAddress,
     name: user?.fullName,
   };
-console.log(user);
 
+  
   const handleCheckout = async () => {
+    console.log("cartItems", {line_items: cart.cartItems.map((cartItem: any) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: cartItem.item.title,
+          metadata: {
+            productId: cartItem.item._id,
+            ...(cartItem.size && { size: cartItem.size }),
+            ...(cartItem.color && { color: cartItem.color }),
+          },
+        },
+        unit_amount: cartItem.item.price * 100,
+      },
+      quantity: cartItem.quantity,
+    })),});
+    
     try {
       if (!user) {
         router.push("sign-in");

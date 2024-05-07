@@ -5,6 +5,8 @@ import { getProductDetail } from "@/lib/actions/actions";
 const ProductDetail = async ({params}:{params:{productId:string}}) => {
  const productDetail = await getProductDetail(params.productId);
  
+ console.log("productDetail",productDetail);
+ 
   return (
     <div className="flex justify-center items-start gap-16 py-10 px-5 max-md:flex-col max-md:items-center">
       <Gallery productMedia={productDetail.media}/>
